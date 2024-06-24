@@ -1,0 +1,913 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+}
+
+li {
+	list-style: none;
+}
+
+:root {
+	--poppins: 'Poppins', sans-serif;
+	--lato: 'Lato', sans-serif;
+
+	--light: #22092C;
+	--blue: #b40036;
+	--light-blue: #BE3144;
+	--grey: #da3d3d;
+	--dark-grey: #7c0d2e;
+	--dark: #ffffff;
+	--red: #eb6b67;
+	--yellow: #dcbc51;
+	--light-yellow: #FFF2C6;
+	--orange: #eb7e4f;
+	--light-orange: #FFE0D3;
+}
+
+html {
+	overflow-x: hidden;
+}
+
+body.dark {
+	--light: #0C0C1E;
+	--grey: #060714;
+	--dark: #FBFBFB;
+}
+
+body {
+	background: var(--grey);
+	overflow-x: hidden;
+}
+
+
+
+
+.logoutButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: var(--light);
+    background-color: var(--red);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.logoutButton:hover {
+    background-color: var(--blue);
+    transform: scale(1.05);
+}
+
+.logoutButton:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(180, 0, 54, 0.5);
+}
+/* SIDEBAR */
+#sidebar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 280px;
+	height: 100%;
+	background: var(--light);
+	z-index: 2000;
+	font-family: var(--lato);
+	transition: .3s ease;
+	overflow-x: hidden;
+	scrollbar-width: none;
+}
+#sidebar::--webkit-scrollbar {
+	display: none;
+}
+#sidebar.hide {
+	width: 60px;
+}
+#sidebar .brand {
+	font-size: 24px;
+	font-weight: 700;
+	height: 56px;
+	display: flex;
+	align-items: center;
+	color: var(--blue);
+	position: sticky;
+	top: 0;
+	left: 0;
+	background: var(--light);
+	z-index: 500;
+	padding-bottom: 20px;
+	box-sizing: content-box;
+}
+#sidebar .brand .bx {
+	min-width: 60px;
+	display: flex;
+	justify-content: center;
+}
+#sidebar .side-menu {
+	width: 100%;
+	margin-top: 48px;
+}
+
+#sidebar .side-menu li {
+	height: 48px;
+	background: transparent;
+	margin-left: 6px;
+	border-radius: 48px 0 0 48px;
+	padding: 4px;
+}
+#sidebar .side-menu li.active {
+	background: var(--grey);
+	position: relative;
+}
+#sidebar .side-menu li.active::before {
+	content: '';
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	top: -40px;
+	right: 0;
+	box-shadow: 20px 20px 0 var(--grey);
+	z-index: -1;
+}
+#sidebar .side-menu li.active::after {
+	content: '';
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	bottom: -40px;
+	right: 0;
+	box-shadow: 20px -20px 0 var(--grey);
+	z-index: -1;
+}
+#sidebar .side-menu li a {
+	width: 100%;
+	height: 100%;
+	background: var(--light);
+	display: flex;
+	align-items: center;
+	border-radius: 48px;
+	font-size: 16px;
+	color: var(--dark);
+	white-space: nowrap;
+	overflow-x: hidden;
+}
+#sidebar .side-menu.top li.active a {
+	color: var(--blue);
+}
+#sidebar.hide .side-menu li a {
+	width: calc(48px - (4px * 2));
+	transition: width .3s ease;
+}
+#sidebar .side-menu li a.logout {
+	color: var(--red);
+}
+#sidebar .side-menu.top li a:hover {
+	color: var(--blue);
+}
+#sidebar .side-menu li a .bx {
+	min-width: calc(60px  - ((4px + 6px) * 2));
+	display: flex;
+	justify-content: center;
+}
+#sidebar.hide ~ .main-content .container {
+    margin-left: 80px; 
+}
+
+#sidebar.hide ~ #workspaceList {
+    margin-left: 80px; 	
+}
+#sidebar.hide ~ #workspaceList {
+    flex: 1 1 calc(100% - 20px);
+}
+/* SIDEBAR */
+
+
+
+
+
+/* CONTENT */
+#content {
+	position: relative;
+	width: calc(100% - 280px);
+	left: 280px;
+	transition: .3s ease;
+}
+#sidebar.hide ~ #content {
+	width: calc(100% - 60px);
+	left: 60px;
+}
+
+
+
+
+/* NAVBAR */
+#content nav {
+	height: 56px;
+	background: var(--light);
+	padding: 0 24px;
+	display: flex;
+	align-items: center;
+	grid-gap: 24px;
+	font-family: var(--lato);
+	position: sticky;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+}
+#content nav::before {
+	content: '';
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	bottom: -40px;
+	left: 0;
+	border-radius: 50%;
+	box-shadow: -20px -20px 0 var(--light);
+}
+#content nav a {
+	color: var(--dark);
+}
+#content nav .bx.bx-menu {
+	cursor: pointer;
+	color: var(--dark);
+}
+#content nav .nav-link {
+	font-size: 16px;
+	transition: .3s ease;
+}
+#content nav .nav-link:hover {
+	color: var(--blue);
+}
+#content nav .switch-mode {
+	display: block;
+	min-width: 50px;
+	height: 25px;
+	border-radius: 25px;
+	background: var(--grey);
+	cursor: pointer;
+	position: relative;
+}
+#content nav .switch-mode::before {
+	content: '';
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	bottom: 2px;
+	width: calc(25px - 4px);
+	background: var(--blue);
+	border-radius: 50%;
+	transition: all .3s ease;
+}
+#content nav #switch-mode:checked + .switch-mode::before {
+	left: calc(100% - (25px - 4px) - 2px);
+}
+/* NAVBAR */
+
+
+
+
+
+/* MAIN */
+#content main {
+	width: 100%;
+	padding: 36px 24px;
+	font-family: var(--poppins);
+	max-height: calc(100vh - 56px);
+	overflow-y: auto;
+}
+#content main .head-title {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	grid-gap: 16px;
+	flex-wrap: wrap;
+}
+#content main .head-title .left h1 {
+	font-size: 36px;
+	font-weight: 600;
+	margin-bottom: 10px;
+	color: var(--dark);
+}
+#content main .head-title .left .breadcrumb {
+	display: flex;
+	align-items: center;
+	grid-gap: 16px;
+}
+#content main .head-title .left .breadcrumb li {
+	color: var(--dark);
+}
+#content main .head-title .left .breadcrumb li a {
+	color: var(--dark-grey);
+	pointer-events: none;
+}
+#content main .head-title .left .breadcrumb li a.active {
+	color: var(--blue);
+	pointer-events: unset;
+}
+#content main .head-title .btn-download {
+	height: 36px;
+	padding: 0 16px;
+	border-radius: 36px;
+	background: var(--blue);
+	color: var(--light);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	grid-gap: 10px;
+	font-weight: 500;
+}
+/* MAIN */
+
+
+
+/* Whole Page*/
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #030322;
+}
+/*Dashboard*/
+.main-content {
+	width: calc(100% - 280px);
+}
+.container {
+    max-width: 500px;
+    margin: 0;
+    padding: 40px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Poppins', sans-serif;
+    transition: margin-left 0.3s ease; 
+    margin-left: 330px; 
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin-left: 80px; 
+    }
+}
+h2 {
+    text-align: center;
+    color: #22092C;
+}
+
+.form-label {
+    font-weight: bold;
+    color: #22092C;
+}
+
+.form-control {
+    border: 1px solid #ff4c4c;
+    border-radius: 4px;
+}
+
+.btn-primary,
+.btn-delete, .btn-proceed  {
+    background-color: #ff4c4c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-primary:hover,
+.btn-delete:hover, .btn-proceed:hover {
+    background-color: #e60000;
+    transform: scale(1.05);
+}
+
+.btn-delete, .btn-proceed {
+    background-color: #ff4c4c;
+	color: white;
+}
+
+.btn-delete:hover, .btn-proceed:hover {
+    background-color: #e60000;
+}
+
+
+.alert-success {
+    text-align: center;
+}
+textarea.form-control {
+	resize: none; 
+	width: 100%;
+}
+input.form-control {
+	width: 100%;
+	height: 30px;
+}	
+#workspaceList {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+	transition: margin-left 0.3s ease; 
+    margin-left: 330px;
+}
+@media (max-width: 768px) {
+    #workspaceList {
+        margin-left: 80px; 
+    }
+}
+.workspace-item {
+    background: white;
+    padding: 40px;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: #030322;
+    font-family: 'Poppins', sans-serif;
+    transition: margin-left 0.3s ease;
+    width: calc(33.33% - 20px); 
+    box-sizing: border-box;
+}
+
+@media (max-width: 1200px) {
+    .workspace-item {
+        width: calc(50% - 20px); 
+    }
+}
+
+@media (max-width: 768px) {
+    .workspace-item {
+        width: 100%; 
+    }
+}
+
+.workspace-item h3 {
+    margin-top: 0;
+    color: #22092C;
+}
+
+.workspace-item p {
+    color: #333;
+}
+
+.workspace-item form {
+    margin-top: 10px;
+}
+
+.alert-success {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+/*calendar*/
+#main-container {
+    display: flex;
+	margin-top: 20px;
+	gap: 20px;
+	align-items: flex;
+}
+
+#calendar-container {
+    width: 65%;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+#calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#calendar-header button {
+    background: #ff4c4c;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#calendar-header #month-year {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff4c4c;
+}
+
+#calendar-days {
+    display: flex;
+    justify-content: space-between;
+}
+
+#calendar-days .day-name {
+    width: 14.2%;
+    text-align: center;
+    font-weight: bold;
+    color: #030322;
+}
+
+#calendar-dates {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.calendar-cell {
+    width: 14.2%;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.calendar-cell:hover {
+    background: #f0f0f0;
+    cursor: pointer;
+}
+
+.calendar-cell.empty {
+    background: none;
+    cursor: default;
+}
+
+#events-create {
+    margin-top: 20px;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+#events-create h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+#events-create form {
+    display: flex;
+    flex-direction: column;
+}
+
+#events-create form div {
+    margin-bottom: 10px;
+}
+
+#events-create form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+#events-create form input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#events-create form button {
+    background: #ff4c4c;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#events-create form button:hover {
+    background: #e60000;
+}
+
+#events-display {
+    width: 35%;
+	height: 410px;
+    max-height: 500px;
+    overflow-y: auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+#events-display h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+#events-display ul {
+    list-style: none;
+    padding: 0;
+}
+
+#events-display ul li {
+    background: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#events-display ul li button {
+    background: #ff4c4c;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#events-display ul li button:hover {
+    background: #e60000;
+}
+.settings-form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.settings-form .form-group {
+    margin-bottom: 15px;
+}
+
+.settings-form label {
+    display: block;
+    font-weight: bold;
+	color: #ff4c4c;
+    margin-bottom: 5px;
+}
+
+.settings-form input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.settings-form button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background: #ff4c4c;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.settings-form button:hover {
+    background: #e60000;
+}
+
+/*kanban*/
+.kanban-board {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    padding: 10px;
+    margin-top: 20px;
+    margin: auto;
+    width: 100%; /* Set the width as needed */
+    height: 410px; /* Set a fixed height */
+    overflow: auto; /* Enable scrolling */
+}
+
+.kanban-column {
+    background: #f4f4f4;
+    border-radius: 5px;
+    padding: 10px;
+    width: calc(33.33% - 20px); /* Adjust the width to fit three columns in a row with margins */
+    margin-bottom: 5px; /* Add margin between columns */
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+    height: 360px;
+}
+
+.kanban-column h2 {
+    text-align: center;
+    color: #ff4c4c;
+}
+
+.kanban-items {
+    height: 100%; /* Set to fill the height of the column */
+    padding: 10px;
+    border: 1px solid #ddd;
+    background: #fff;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: auto; /* Enable scrolling for kanban items */
+    height: 300px;
+}
+
+.kanban-item {
+    background: #ddd;
+    margin-bottom: 5px;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.add-task-btn {
+    background-color: #ff4c4c;
+    margin-left: 37%;
+    margin-top: 10px;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    font-family: 'Poppins', sans-serif;
+}
+.task-details {
+	background-color: #f9f9f9;
+	padding: 20px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+}
+
+.task-details h3 {
+	margin-top: 0;
+    color: #ff4c4c;
+}
+
+.task-details label {
+	display: block;
+	margin-top: 10px;
+}
+
+.task-details input,
+.task-details select {
+	width: 100%;
+	padding: 8px;
+	margin-top: 5px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.update-task-btn {
+	background-color: #ff4c4c;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	padding: 10px;
+	cursor: pointer;
+	margin-top: 10px;
+	width: 100%;
+	display: block;
+}
+
+.update-task-btn:hover {
+	background-color: #e60000;
+}
+
+.mga-task{
+    background-color: white;
+    border-radius: 5px;
+    
+}
+.delete-button {
+    background-color: #ff4c4c; /* Red background */
+    color: white; /* White text */
+    border: none; /* Remove borders */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 20px; /* Some padding */
+    text-align: center; /* Center the text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Make the button an inline-block element */
+    font-size: 16px; /* Increase font size */
+    margin-top: 10px; /* Add some margin on top */
+    cursor: pointer; /* Pointer/hand icon */
+}
+
+.delete-button:hover {
+    background-color: #e60000; /* Darker red on hover */
+}
+/* ////// */
+/* Title button styling */
+.task-title {
+    display: flex;
+    align-items: center;
+}
+
+.task-title h4 {
+    margin-right: 10px; /* Space between "Title:" text and the button */
+}
+
+.task-title button {
+    background-color: lightpink;
+    border: none;
+    cursor: pointer;
+    font-size: 1.25rem; /* Adjust the size as needed */
+    color: #333;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.task-title button:hover {
+    background-color: #ffb6c1; /* Slightly darker pink for hover effect */
+}
+.task-name{
+    font-size: 25px;
+}
+
+/* Modal container */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Modal content */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 10px; /* Add border radius for the box */
+    width: 80%;
+    max-width: 500px;
+}
+
+/* Close button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Task details */
+.task-details {
+    margin-top: 1rem;
+}
+
+.task-details h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: #333;
+}
+
+.task-details p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #555555;
+}
+
+/* Task item styling with slight border radius */
+.task-item {
+    border: 1px solid #ccc;
+    border-radius: 10px; /* Add border radius for the box */
+    padding: 1rem;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 1rem;
+}
+.mga-task {
+    display: flex;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    /* Add any other styles you need */
+}
+/* dasdna */
+
+
+
